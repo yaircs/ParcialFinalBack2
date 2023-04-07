@@ -5,23 +5,14 @@ spring:
   application:
     name: movie-service
   datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password: sa
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/movie-dev
+    username: root
+    password: Alexis165.
   jpa:
-    open-in-view: false
+    hibernate.ddl-auto: update
+    generate-ddl: true
     show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-        format_sql: true
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
 
 message: hello from movie-service
 
@@ -29,4 +20,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: '*'
