@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: movie-service
+  config:
+    import: configserver:http://localhost:8888
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3370/movie-dev
+    username: usr-movie
+    password: pwd-movie
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
