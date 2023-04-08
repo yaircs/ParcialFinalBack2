@@ -17,7 +17,7 @@ spring:
       version: 4.0.2
   data:
     mongodb:
-      database: catalog
+      database: test
       port: 27017
   message: hello from catalog-service
 
