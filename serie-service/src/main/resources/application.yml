@@ -1,4 +1,8 @@
 spring:
+  application:
+    name: serie-service
+  config:
+    import: configserver:http://localhost:8888
   mongodb:
     embedded:
       version: 4.0.2

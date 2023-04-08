@@ -27,8 +27,16 @@ public class MovieController {
         return ResponseEntity.ok().body(service.findByGenre(genre));
     }
 
+    /*
     @PostMapping("/save")
     ResponseEntity<Movie> saveMovie(@RequestBody Movie movie) {
         return ResponseEntity.ok().body(service.save(movie));
+    }
+    */
+
+    @PostMapping("/save")
+    ResponseEntity<Long> saveMovie(@RequestBody Movie movie) {
+        service.save(movie);
+        return ResponseEntity.ok(movie.getId());
     }
 }

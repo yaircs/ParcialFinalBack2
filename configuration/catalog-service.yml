@@ -4,28 +4,54 @@ server:
 spring:
   application:
     name: catalog-service
-  datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password: sa
-  jpa:
-    open-in-view: false
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-        format_sql: true
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
+  zipkin:
+    baseUrl: http://localhost:9411/    
+  mongodb:
+    embedded:
+      version: 4.0.2
+  data:
+    mongodb:
+      database: catalog
+      port: 27017
+  message: hello from catalog-service
 
-message: hello from catalog-service
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+
+      
+resilience4j.retry:
+  instances:
+    retryCatalog:
+      maxAttempts: 3
+      waitDuration: 10s
+      enableExponentialBackoff: true
+      exponentialBackoffMultiplier: 2
+      retryExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+
+
+resilience4j.circuitbreaker:
+  instances:
+    clientCatalog:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: TIME_BASED
+      minimumNumberOfCalls: 20
+      waitDurationInOpenState: 50s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+
+
+
+
