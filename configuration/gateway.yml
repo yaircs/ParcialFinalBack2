@@ -22,7 +22,9 @@ spring:
           uri: lb://api-series
           predicates:
             - Path=/api/v1/series/**
-
+  zipkin:
+    baseUrl: http://localhost:9411/
+    enabled: true
 info:
   app:
     name: ${spring.application.name}

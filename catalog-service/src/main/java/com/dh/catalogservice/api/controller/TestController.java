@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class TestController {
 
+public class TestController {
+/*
     @Value("${message}")
     private String message;
 
@@ -15,4 +15,6 @@ public class TestController {
     ResponseEntity<String> getMessage() {
         return ResponseEntity.ok().body(this.message);
     }
+
+ */
 }

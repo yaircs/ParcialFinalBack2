@@ -9,4 +9,5 @@ spring:
   data:
     mongodb:
       database: test
+      url: http://localhost:27017
       port: 27017
