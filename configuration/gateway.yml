@@ -18,8 +18,8 @@ spring:
           uri: lb://movie-service
           predicates:
             - Path=/movies/**
-        - id: series
-          uri: lb://api-series
+        - id: msseries-service
+          uri: lb://serie-service
           predicates:
             - Path=/api/v1/series/**
   zipkin:
